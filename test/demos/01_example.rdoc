@@ -1,0 +1,46 @@
+= Bezel
+
+First Bezel must be loaded, of course. This will also load
+RubyGems as Bezel presently uses the +Gem.path+ to locate
+Ruby libraries.
+
+  require 'bezel'
+
+We are going to use a dummy Gem location for this example.
+
+  Gem.path.unshift(File.expand_path('../fixtures'))
+
+Now we can try it out. The dummy location houses two libraries
+of the same name but different versions.
+
+  module Example1
+    TryMe = lib('tryme', '1.0')
+  end
+
+TryMe has a class method called #report and we should see that
+it works as expected.
+
+  Example1::TryMe.report.assert == "You are using version 1.0!"
+
+It also imports a method called #extra from a seperate file.
+
+  Example1::TryMe.extra.assert == "Something extra from version 1.0!"
+
+Now we should be able to do the same for TryMe v1.1 without any
+issues of interference betwee the two versions.
+
+  module Example2
+    TryMe = lib('tryme', '1.1')
+  end
+
+Again we should see that the #report method works as expected, but this
+time reported form the new version.
+
+  Example2::TryMe.report.assert == "You are using version 1.1!"
+
+And that it also imports a method called #extra from a seperate file.
+
+  Example2::TryMe.extra.assert == "Something extra from version 1.1!"
+
+That's all folks!
+
