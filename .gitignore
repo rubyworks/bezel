@@ -1,0 +1,7 @@
+.cache
+doc/rdoc
+doc/ri
+doc/qedoc
+log
+pkg
+work/sandbox

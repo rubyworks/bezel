@@ -45,6 +45,9 @@ Ruby Facets and ActiveSupport.
 load system, your program will require Bezel be installed by your
 users. 
 
+4. Within Bezel dependent libraries #import must be used instead of
+#require or #load in order to keep the code within the current module.
+
 Despite the minor limitations and necessary practices required for its
 use, Bezel is highly advantageous to the developers and end-users alike
 in that it puts an end to the dreaded Dependency Hell.
