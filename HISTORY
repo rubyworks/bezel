@@ -1,9 +1,10 @@
 = Release History
 
-== 1.0.0 / 2010-02-15
+== 0.1.0 / 2010-02-19
 
-This is the first release of Bezel, an alternate load
-system for Ruby.
+This is an alpha release of Bezel, an alternate load
+system for Ruby, just to put it out there and get
+some feedback.
 
 Changes:
 
