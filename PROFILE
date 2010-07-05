@@ -1,0 +1,11 @@
+--- 
+title  : Bezel
+summary: Alternate loading system for Ruby allowing version multiplicity.
+suite  : proutils
+
+authors:
+  - Thomas Sawyer
+
+resources:
+  homepage: http://proutils.github.com/bezel
+
