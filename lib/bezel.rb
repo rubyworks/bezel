@@ -43,9 +43,6 @@
 # in that it puts an end to the dreaded Dependency Hell.
 #
 class Bezel < Module
-  # TODO: if rubygems is already loaded
-  #require 'rubygems'
-
   # Cache of loaded modules. This speeds things
   # up if two libraries load the same third library.
   TABLE = Hash.new{|h,k|h[k]={}}
@@ -71,27 +68,18 @@ class Bezel < Module
   #
   def self.find(name, version=nil)
     path = nil
-    path ||= gem_find(name, version) if defined?(::Gem)
+    path ||= gem_find(name, version)  if defined?(::Gem)
     path ||= roll_find(name, version) if defined?(::Roll)
     path
   end
 
-  # TODO: max needs to be a natural comparion
-  def self.gem_find(name, version=nil)
-    if version
-      basename = "#{name}-#{version}"
-      gem_select(name).find do |path|
-        File.basename(path) == basename
-      end
-    else
-      gem_select(name).max  # natural comparison
-    end
-  end
-
   #
-  def self.gem_select(name)
-    gem_paths.select do |path|
-      File.basename(path) =~ /^#{name}-/
+  def self.gem_find(name, version)
+    raise ArgumentError, "version must be explicit" unless version
+
+    basename = "#{name}-#{version}"
+    gem_paths.find do |path|
+      File.basename(path) == basename
     end
   end
 
