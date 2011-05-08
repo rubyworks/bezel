@@ -42,20 +42,21 @@ This has a some important effects on how you write your Ruby programs:
 1. Any reference to core/standard libraries must be referenced via '::' 
 prefix (eg. ::Enumerable).
 
-2. Core extensions are not version isolated. So avoid them when
-possible, or depend on highly stable standardized bases such as
-Ruby Facets and ActiveSupport.
+2. Core extensions are not version isolated. So when possible, avoid them
+or depend on highly stable standardized bases such as Ruby Facets
+and ActiveSupport.
 
 3. Since Bezel is a completely different alternative to Ruby's normal
 load system, your program will require Bezel be installed by your
-users. 
+users. No big deal. In other words, list it into your projects dependencies.
 
-4. Within Bezel dependent libraries #import must be used instead
-of #require or #load in order to keep the code within the current module.
+4. Within Bezel dependent libraries #import must be used to load internal
+library scripts instead of #require or #load, in order to keep the code
+within the annonymous module.
 
-Despite the minor limitations and necessary practices required for its
-use, Bezel is highly advantageous to the developers and end-users alike
-in that it puts an end to the dreaded Dependency Hell.
+Despite these necessary practices for its use, Bezel is highly advantageous
+to the developers and end-users alike in that it puts an end to the dreaded
+<i>Dependency Hell</i>.
 
 ## COPYRIGHT
 

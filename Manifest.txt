@@ -1,16 +1,5 @@
-#!mast -x Syckfile bin lib meta test [A-Z]*
+#!mast .ruby bin lib test [A-Z][A-Z]*
 lib/bezel.rb
-meta/homepage
-meta/name
-meta/ruby
-meta/suite
-meta/summary
-meta/title
-meta/version
-test/demos/01_example.rdoc
-test/fixtures/gems/tryme-1.0/lib/tryme/extra.rb
-test/fixtures/gems/tryme-1.0/lib/tryme.rb
-test/fixtures/gems/tryme-1.1/lib/tryme/extra.rb
-test/fixtures/gems/tryme-1.1/lib/tryme.rb
-HISTORY
+HISTORY.rdoc
+LICENSE.txt
 README.md
