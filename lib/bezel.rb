@@ -38,10 +38,12 @@
 #    load system, your program will require Bezel be installed by your
 #    users. 
 #
-# Despite the limitations and necessary practices required for its use
-# Bezel is highly advantageous to the developers and end-users alike
-# in that it puts an end to the dreaded Dependency Hell.
+# Despite these necessary practices for its use, Bezel is highly advantageous
+# to the developers and end-users alike in that it puts an end to the dreaded
+# Dependency Hell.
 #
+# TODO: Consider how best to support alternate loadpaths beyond 'lib/'.
+
 class Bezel < Module
   # Cache of loaded modules. This speeds things
   # up if two libraries load the same third library.
@@ -64,6 +66,19 @@ class Bezel < Module
     STACK.pop
     TABLE[main] = mod
   end
+
+  #
+  def self.import(fname)
+    mod = STACK.last
+    file = File.join(mod.__path__, 'lib', mod.__name__, fname)
+    mod.module_eval(File.read(file), file, 0)
+  end
+
+  #
+  #def self.main(name, version=nil)
+  #  path = find(name, version)
+  #  File.join(path, 'lib', name + '.rb')
+  #end
 
   #
   def self.find(name, version=nil)
@@ -97,13 +112,7 @@ class Bezel < Module
     return nil
   end
 
-  #
-  #def self.main(name, version=nil)
-  #  path = find(name, version)
-  #  File.join(path, 'lib', name + '.rb')
-  #end
-
-  #
+  # Construct new Bezel module.
   def initialize(name, version, path)
     @__name__ = name
     @__vers__ = version
@@ -111,29 +120,29 @@ class Bezel < Module
     super()
   end
 
+  # Name of library.
   def __name__
     @__name__
   end
 
+  # Version of library.
   def __vers__
     @__vers__
   end
 
+  # Path to library.
   def __path__
     @__path__
   end
 
 end
 
-#
+# Retuns a new Bezel Module.
 def lib(name, version=nil)
   Bezel.lib(name, version)
 end
 
 # When using Bezel, rather than use #require or #load, you use #import.
 def import(fname)
-  mod = Bezel::STACK.last
-  file = File.join(mod.__path__, 'lib', mod.__name__, fname)
-  mod.module_eval(File.read(file), file, 0)
+  Bezel.import(fname)
 end
-
