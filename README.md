@@ -1,12 +1,17 @@
 # Bezel
 
-* home: http://proutils.github.com/bezel
-* work: http://github.com/proutils/bezel
-
 ## DESCRIPTION
 
 The idea of Bezel is to overcome the limitations of using different
 versions of the same package in the same Ruby process.
+
+
+## RESOURCES
+
+* home: http://proutils.github.com/bezel
+* work: http://github.com/proutils/bezel
+* mail: http://googlegroups.com/group/rubyworks-mailinglist
+
 
 ## USAGE
 
@@ -57,4 +62,3 @@ in that it puts an end to the dreaded Dependency Hell.
 Copyright (c) 2009 Thomas Sawyer
 
 Bezel is distributed under the terms of the Ruby License.
-

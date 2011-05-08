@@ -20,7 +20,7 @@
 #     FancyApp = lib('fancyapp')  # use newest available
 #     ...
 #
-# How does this work? When you call library(), Bezel looks for
+# How does this work? When you call lib(), Bezel looks for
 # the package in the current gem paths (and, in the future, Roll ledger)
 # then it reads the primary package file (eg. tomslib.rb) fro the package
 # and evals it into an anonymous module.
@@ -43,7 +43,8 @@
 # in that it puts an end to the dreaded Dependency Hell.
 #
 class Bezel < Module
-  require 'rubygems'
+  # TODO: if rubygems is already loaded
+  #require 'rubygems'
 
   # Cache of loaded modules. This speeds things
   # up if two libraries load the same third library.
@@ -52,6 +53,47 @@ class Bezel < Module
   # Load stack keeps track of what modules are in the process
   # of being loaded.
   STACK = []
+
+  # Load library into a module namespace.
+  def self.lib(name, version=nil)
+    path = find(name, version)
+    main = File.join(path, 'lib', name + '.rb')
+
+    return TABLE[main] if TABLE.key?(main)
+
+    mod = new(name, version, path)
+    STACK.push mod
+    mod.module_eval(File.read(main), main, 0)
+    STACK.pop
+    TABLE[main] = mod
+  end
+
+  #
+  def self.find(name, version=nil)
+    path = nil
+    path ||= gem_find(name, version) if defined?(::Gem)
+    path ||= roll_find(name, version) if defined?(::Roll)
+    path
+  end
+
+  # TODO: max needs to be a natural comparion
+  def self.gem_find(name, version=nil)
+    if version
+      basename = "#{name}-#{version}"
+      gem_select(name).find do |path|
+        File.basename(path) == basename
+      end
+    else
+      gem_select(name).max  # natural comparison
+    end
+  end
+
+  #
+  def self.gem_select(name)
+    gem_paths.select do |path|
+      File.basename(path) =~ /^#{name}-/
+    end
+  end
 
   #
   def self.gem_paths
@@ -62,23 +104,9 @@ class Bezel < Module
     )
   end
 
-  #
-  def self.select(name)
-    gem_paths.select do |path|
-      File.basename(path) =~ /^#{name}-/
-    end
-  end
-
-  #
-  def self.find(name, version=nil)
-    if version
-      basename = "#{name}-#{version}"
-      select(name).find do |path|
-        File.basename(path) == basename
-      end
-    else
-      select(name).max
-    end
+  # TODO: Add Roll finder.
+  def self.roll_find(name,version=nil)
+    return nil
   end
 
   #
@@ -88,13 +116,19 @@ class Bezel < Module
   #end
 
   #
-  def initialize(name, path)
+  def initialize(name, version, path)
     @__name__ = name
+    @__vers__ = version
     @__path__ = path
+    super()
   end
 
   def __name__
     @__name__
+  end
+
+  def __vers__
+    @__vers__
   end
 
   def __path__
@@ -105,20 +139,7 @@ end
 
 #
 def lib(name, version=nil)
-  path = Bezel.find(name, version)
-  main = File.join(path, 'lib', name + '.rb')
-
-  return Bezel::TABLE[main] if Bezel::TABLE.key?(main)
-
-  mod = Bezel.new(name, path)
-
-  Bezel::STACK << mod
-
-  mod.module_eval(File.read(main), main, 0)
-
-  Bezel::STACK.pop
-
-  Bezel::TABLE[main] = mod
+  Bezel.lib(name, version)
 end
 
 # When using Bezel, rather than use #require or #load, you use #import.
