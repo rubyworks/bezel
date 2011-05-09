@@ -49,8 +49,8 @@ rdoc:
   extra    : ~
   active   : true
 
-ridoc:
-  service: RIDoc
+ri:
+  service: RI
   include: ~
   exclude: ~
   active : true
