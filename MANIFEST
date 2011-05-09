@@ -1,5 +1,7 @@
 #!mast .ruby bin lib test [A-Z][A-Z]*
+.ruby
 lib/bezel.rb
+lib/bezel.yml
 HISTORY.rdoc
 LICENSE.txt
 README.md

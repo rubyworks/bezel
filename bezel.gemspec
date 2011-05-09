@@ -15,7 +15,7 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2011-05-08 00:00:00 -04:00
+date: 2011-05-09 00:00:00 -04:00
 default_executable: 
 dependencies: []
 
@@ -30,7 +30,9 @@ extensions: []
 extra_rdoc_files: 
 - README.md
 files: 
+- .ruby
 - lib/bezel.rb
+- lib/bezel.yml
 - HISTORY.rdoc
 - LICENSE.txt
 - README.md

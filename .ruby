@@ -21,7 +21,7 @@ maintainers: []
 
 requires: []
 
-manifest: Manifest.txt
+manifest: MANIFEST
 version: 0.2.0
 licenses: []
 
