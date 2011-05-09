@@ -1,0 +1,53 @@
+= ANSI Example
+
+  require 'bezel'
+
+  ANSI_VERSION = '1.2.6'
+
+  class ColorfulString
+    X = lib('ansi', ANSI_VERSION)
+    #include x
+
+    COLORS = [:red, :yellow, :green, :blue, :magenta]
+
+    def initialize(string)
+      @string = string
+      reset_colors
+    end
+
+    def to_s
+      s = ""
+      @string.split(//).each do |c|
+        s << X::ANSI::Code.send(next_color) + c;
+      end
+      s << X::ANSI::Code::CLEAR
+      reset_colors
+      return s
+    end
+
+    def next_color
+      color = @colors.shift
+      @colors << color
+      color
+    end
+
+    def reset_colors
+      @colors = COLORS.dup
+    end
+  end
+
+Then
+
+  cs = ColorfulString.new("Hello World!")
+
+  #puts cs
+
+  cs.to_s.assert == "\e[31mH\e[33me\e[32ml\e[34ml\e[35mo\e[31m \e[33mW\e[32mo\e[34mr\e[35ml\e[31md\e[33m!\e[0m"
+
+ANSI 1.2.6+ has been fine-tuned to work with Bezel. So even core extensions
+work.
+
+  red = "How about this!".ansi(:red)
+
+  red.assert == "\e[31mHow about this!\e[0m"
+

@@ -47,7 +47,7 @@
 class Bezel < Module
   # Cache of loaded modules. This speeds things
   # up if two libraries load the same third library.
-  TABLE = Hash.new{|h,k|h[k]={}}
+  TABLE = Hash.new #{|h,k|h[k]={}}
 
   # Load stack keeps track of what modules are in the process
   # of being loaded.
@@ -56,23 +56,62 @@ class Bezel < Module
   # Load library into a module namespace.
   def self.lib(name, version=nil)
     path = find(name, version)
-    main = File.join(path, 'lib', name + '.rb')
-
+    ## load error if no gem found
+    raise LoadError, "#{name}-#{version} not found" unless path
+    ## location of bezel file
+    main = File.join(path, 'lib', name + '.bezel')  #TODO:LOADPATH
+    ## check cache
     return TABLE[main] if TABLE.key?(main)
-
+    ## load error if no bezel file
+    raise LoadError, "#{name}-#{version} has no bezel!" unless File.exist?(main)
+    ## read in bezel file
+    script = File.read(main)
+    # create new Bezel module for file
     mod = new(name, version, path)
+    ## put module on STACK
     STACK.push mod
-    mod.module_eval(File.read(main), main, 0)
+    ## evaluate script in the context of module
+    mod.module_eval(script, main, 0)  # r =
+    ## pop module off STACK
     STACK.pop
+    ## add module to cache, and return module
     TABLE[main] = mod
+    # if Module === r ? r : mod
   end
 
   #
   def self.import(fname)
+    ## lookup most recent Bezel module
     mod = STACK.last
-    file = File.join(mod.__path__, 'lib', mod.__name__, fname)
-    mod.module_eval(File.read(file), file, 0)
+    ## if Bezel module is returned
+    if mod
+      ## TODO: Hadle loadpath?
+      file = File.join(mod.__path__, 'lib', fname)
+      ## TODO: Support other extensions, like .rbx and .so?
+      file = file + '.rb' unless file[-3,3] == '.rb'
+      ## raise load error if file does not exist
+      raise LoadError, "no such file to load -- #{file}" unless File.exist?(file)
+      ## evaluate script in the context of module
+      mod.module_eval(File.read(file), file, 0)
+    else ## if no Bezel module is returned
+      ## fallback to regular require
+      require(fname)
+    end
   end
+
+  #
+  #def self.require(fname)
+  #  if mod = STACK.last
+  #    glob = File.join(mod.__path__, 'lib', fname + "{.rb,.so,}")  # TODO: All possible extensions
+  #    if file = Dir[glob].first
+  #      return TABLE[file] if TABLE.key?(file)
+  #      TABLE[file] = mod
+  #      mod.module_eval(File.read(file), file, 0)
+  #      mod
+  #    end
+  #  end
+  #  Kernel.require(fname)
+  #end
 
   #
   #def self.main(name, version=nil)
@@ -146,3 +185,8 @@ end
 def import(fname)
   Bezel.import(fname)
 end
+
+#def require(fname)
+#  Bezel.require(fname)
+#end
+

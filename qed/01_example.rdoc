@@ -4,11 +4,11 @@ First Bezel must be loaded, of course. This will also load
 RubyGems as Bezel presently uses the +Gem.path+ to locate
 Ruby libraries.
 
-  require 'bezel'
+  #require 'bezel'
 
 We are going to use a dummy Gem location for this example.
 
-  Gem.path.unshift(File.expand_path('fixtures', File.dirname(__FILE__)))
+  #Gem.path.unshift(File.expand_path('fixtures', File.dirname(__FILE__)))
 
 Now we can try it out. The dummy location houses two libraries
 of the same name but different versions.
