@@ -83,16 +83,15 @@ body { color: #FFFFFF;  }
 #description { color: #888; background: transparent; }
 
 /* readme */
-#readme { margin: 0; padding: 20px; }
-#readme { background: #ccc; }
-#readme { font-family: sans-serif; font-weight: bold; line-height: 160%; }
+#readme { background: #ccc; color: #444; margin: 0; padding: 20px; }
+#readme { font-family: sans-serif; font-weight: normal; line-height: 160%; }
 #readme a { color: #057D14; }
 #readme a:hover { }
 #readme p { }
 #readme h1 { color: #333; }
-#readme h2 { border-color: #85FD93; color: #333; font-size: 1.5em; }
+#readme h2 { border-color: #85FD93; color: #333; font-size: 1.4em; }
 #readme h3 { border-color: #85FD93; }
-#readme li { padding: 2px 10px; margin: 2px;
+#readme li { padding: 1px 20px 0 20px; margin: 1px;
 
 
 /* siderap */
