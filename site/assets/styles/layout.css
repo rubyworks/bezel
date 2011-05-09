@@ -34,7 +34,7 @@ body {margin:0; padding:0; position:relative; }
 /* fonts */
 
 html { font-family: helvetica, sans-serif; font-size: 100%; }
-body { background: url(../images/ring-side.jpg) top 0px no-repeat #311; }
+body { background: url(../images/ring_side.jpg) top 0px no-repeat #311; }
  pre { font-family: monospace; }
   td { text-align: left; }
    p { text-align: justify; font-size: 100%; font-weight: bold; line-height: 170%; }
@@ -64,7 +64,7 @@ body { color: #FFFFFF;  }
 #header table td { vertical-align: bottom; }
 
 /* #main */
-#main { width: 730px; margin: 0 auto; padding: 10px 0; background: #100; border-radius: 16px; }
+#main { width: 730px; margin: 0 auto; padding: 10px 0; background: url(../images/black.png); border-radius: 16px; }
 #main a { font-size: 100%; }
 #main a:hover { text-decoration: underline; }
 #main h2 { font-size: 2em; font-weight: bold; }
@@ -109,5 +109,5 @@ body { color: #FFFFFF;  }
 #footer .advert { margin: 30px auto 0 auto; }
 #footer .copyright { margin: 5px auto; padding: 10px 10px; width: 720px; }
 #footer .copyright { font: bold .8em sans-serif; }
-#footer .copyright { color: #222; }
+#footer .copyright { color: #555; }
 
