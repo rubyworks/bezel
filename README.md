@@ -58,6 +58,27 @@ Despite these necessary practices for its use, Bezel is highly advantageous
 to the developers and end-users alike in that it puts an end to the dreaded
 <i>Dependency Hell</i>.
 
+### How to Bezel a Project
+
+To allow your project to work with Bezel create a `lib/{project.name}.bezel`
+file in your project. The file should contain import statments and any other
+code to get your API to best interface via it's bezel. Here is an example
+of ANSI's bezel file.
+
+    module ANSI; end
+
+    import 'ansi/code'
+    import 'ansi/bbcode'
+    import 'ansi/columns'
+    import 'ansi/diff'
+    import 'ansi/logger'
+    import 'ansi/mixin'
+    import 'ansi/progressbar'
+    import 'ansi/string'
+    import 'ansi/table'
+    import 'ansi/terminal'
+
+
 ## COPYRIGHT
 
 Copyright (c) 2009 Thomas Sawyer
