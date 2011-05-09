@@ -1,0 +1,68 @@
+<h1>Bezel</h1>
+
+<h2>DESCRIPTION</h2>
+
+<p>The idea of Bezel is to overcome the limitations of using different
+versions of the same package in the same Ruby process.</p>
+
+<h2>RESOURCES</h2>
+
+<ul>
+<li>home: http://proutils.github.com/bezel</li>
+<li>work: http://github.com/proutils/bezel</li>
+<li>mail: http://googlegroups.com/group/rubyworks-mailinglist</li>
+</ul>
+
+
+<h2>USAGE</h2>
+
+<p>It works like this. Let's say I wrote a library called TomsLib. Now I
+want to use TomsLib in my new fancy app, FancyApp. In my FancyApp
+namespace I have to create a reference to TomsLib.</p>
+
+<pre><code> module FancyApp
+   TomsLib = lib('tomslib', '1.5')
+   ...
+</code></pre>
+
+<p>Now I have access to TomsLib, but it is localized to my application.
+If Jane comes along and wants to use a different version of TomsLib
+but also utilizes my FancyApp, she could do so:</p>
+
+<pre><code> module JanesProgram
+   TomsLib  = lib('tomslib', '1.0')
+   FancyApp = lib('fancyapp')  # use newest available
+   ...
+</code></pre>
+
+<p>How does this work? When you call lib(), Bezel looks for the package
+in the current Gem paths (and in the future, Roll ledger) then it
+reads the primary package file (eg. tomslib.rb) from the package and
+evals it into an anonymous module.</p>
+
+<p>This has a some important effects on how you write your Ruby programs:</p>
+
+<ol>
+<li><p>Any reference to core/standard libraries must be referenced via '::'
+prefix (eg. ::Enumerable).</p></li>
+<li><p>Core extensions are not version isolated. So when possible, avoid them
+or depend on highly stable standardized bases such as Ruby Facets
+and ActiveSupport.</p></li>
+<li><p>Since Bezel is a completely different alternative to Ruby's normal
+load system, your program will require Bezel be installed by your
+users. No big deal. In other words, list it into your projects dependencies.</p></li>
+<li><p>Within Bezel dependent libraries #import must be used to load internal
+library scripts instead of #require or #load, in order to keep the code
+within the annonymous module.</p></li>
+</ol>
+
+
+<p>Despite these necessary practices for its use, Bezel is highly advantageous
+to the developers and end-users alike in that it puts an end to the dreaded
+<i>Dependency Hell</i>.</p>
+
+<h2>COPYRIGHT</h2>
+
+<p>Copyright (c) 2009 Thomas Sawyer</p>
+
+<p>Bezel is distributed under the terms of the Ruby License.</p>

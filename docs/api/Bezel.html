@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: Bezel</title>
+
+  
+    <link rel="SHORTCUT ICON" href="./assets/icon/class.png">
+  
+
+  <link type="text/css" rel="stylesheet" href="./assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="./assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="./assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      hookHighlightSyntax();
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind("click", highlightClickTarget);
+    });
+  </script>
+</head>
+<body class="class">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      
+        <img src="./assets/icon/class.png" align="absmiddle">&nbsp;
+      
+      <a href="./index.html">&quot;Bezel&quot;</a>&nbsp;
+      <a href="">Bezel</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="./lib/bezel_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/bezel.rb">lib/bezel.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+            
+              <li class="class">Module</li>
+            
+          
+        </ul>
+      </div>
+      
+
+      <!-- Namespace Contents -->
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+            
+            <li class="singleton">
+              <a href="#method-c-find">::find</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-gem_find">::gem_find</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-gem_paths">::gem_paths</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-import">::import</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-lib">::lib</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-new">::new</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-roll_find">::roll_find</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-__name__">#__name__</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-__path__">#__path__</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-__version__">#__version__</a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        
+          <li class="file"><a href="./LICENSE_txt.html">LICENSE.txt</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="./assets/icon/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="class"><a href="./Bezel.html">Bezel</a></li>
+        
+          <li class="class"><a href="./Object.html">Object</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+    </div>
+
+    <div id="validator-badges">
+      
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="./assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://rubyworks.github.com/rdazzle">RDazzle</a>
+                     <a href="http://rubyworks.github.com/redfish">RedFish</a>
+                     v1.0.1
+      <br/><br/>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+        <h1>Bezel</h1>
+      
+
+      
+<p>The idea of <a href="Bezel.html">Bezel</a> is to overcome the limitations
+of using different versions of the same package in the same Ruby proccess.</p>
+
+<p>It works like this. Let’s say I wrote a library called TomsLib. Now I
+want to use TomsLib in my new fancy app, FancyApp. In my FancyApp namespace
+I have to create a reference to TomsLib.</p>
+
+<pre>module FancyApp
+  TomsLib = lib('tomslib', '1.5')
+  ...</pre>
+
+<p>Now I have access to TomsLib, but it is localized to my application. If
+Jane comes along and wants to use a different version of TomsLib but also
+utilizes my FancyApp, she could do so:</p>
+
+<pre>module JanesProgram
+  TomsLib  = lib('tomslib', '1.0')
+  FancyApp = lib('fancyapp')  # use newest available
+  ...</pre>
+
+<p>How does this work? When you call lib(), <a href="Bezel.html">Bezel</a>
+looks for the package in the current gem paths (and, in the future, Roll
+ledger) then it reads the primary package file (eg. tomslib.rb) fro the
+package and evals it into an anonymous module.</p>
+
+<p>This has a some important effects on how you write your Ruby programs:</p>
+<ol><li>
+<p>Any reference to core/standard libraries must be referenced via</p>
+<table class="rdoc-list"><tr><td class="rdoc-term"><p></p></td>
+<td>
+<p>prefix (eg. ::Enumerable).</p>
+</td></tr></table>
+</li><li>
+<p>Core extensions are not version controlled. So avoid them when possible, or
+depend on highly stable standardized bases such as Facets and
+ActiveSupport.</p>
+</li><li>
+<p>Since <a href="Bezel.html">Bezel</a> is a completely different alternative
+to Ruby’s normal load system, your program will require <a
+href="Bezel.html">Bezel</a> be installed by your users.</p>
+</li></ol>
+
+<p>Despite these necessary practices for its use, <a
+href="Bezel.html">Bezel</a> is highly advantageous to the developers and
+end-users alike in that it puts an end to the dreaded Dependency Hell.</p>
+
+<p>TODO: Consider how best to support alternate loadpaths beyond ‘lib/’.</p>
+
+    </div>
+
+    <!-- Constants -->
+    
+    <div id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt><a name="TABLE">TABLE</a></dt>
+        
+        <dd class="description"><p>Cache of loaded modules. This speeds things up if two libraries load the
+same third library.</p></dd>
+        
+      
+        <dt><a name="STACK">STACK</a></dt>
+        
+        <dd class="description"><p>Load stack keeps track of what modules are in the process of being loaded.</p></dd>
+        
+      
+      </dl>
+    </div>
+    
+
+    <!-- Attributes -->
+    
+
+    <!-- Methods -->
+    
+    <div id="public-class-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="find-method" class="method-detail ">
+        <a name="method-c-find"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">find</span><span
+            class="method-args">(name, version=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="find-source">
+<pre>
+<span class="ruby-comment"># File lib/bezel.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">path</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">gem_find</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span>)  <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Gem</span>)
+  <span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">roll_find</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span>) <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Roll</span>)
+  <span class="ruby-identifier">path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="gem_find-method" class="method-detail ">
+        <a name="method-c-gem_find"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">gem_find</span><span
+            class="method-args">(name, version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="gem_find-source">
+<pre>
+<span class="ruby-comment"># File lib/bezel.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">gem_find</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;version must be explicit&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">version</span>
+
+  <span class="ruby-identifier">basename</span> = <span class="ruby-node">&quot;#{name}-#{version}&quot;</span>
+  <span class="ruby-identifier">gem_paths</span>.<span class="ruby-identifier">find</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">basename</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="gem_paths-method" class="method-detail ">
+        <a name="method-c-gem_paths"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">gem_paths</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="gem_paths-source">
+<pre>
+<span class="ruby-comment"># File lib/bezel.rb, line 141</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">gem_paths</span>
+  <span class="ruby-ivar">@gem_paths</span> <span class="ruby-operator">||=</span> (
+    <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dir</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-string">'gems'</span>, <span class="ruby-string">'*'</span>)]
+    <span class="ruby-keyword">end</span>.<span class="ruby-identifier">flatten</span>
+  )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="import-method" class="method-detail ">
+        <a name="method-c-import"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">import</span><span
+            class="method-args">(fname)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="import-source">
+<pre>
+<span class="ruby-comment"># File lib/bezel.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">import</span>(<span class="ruby-identifier">fname</span>)
+  <span class="ruby-comment">## lookup most recent Bezel module</span>
+  <span class="ruby-identifier">mod</span> = <span class="ruby-constant">STACK</span>.<span class="ruby-identifier">last</span>
+  <span class="ruby-comment">## if Bezel module is returned</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">mod</span>
+    <span class="ruby-comment">## TODO: Hadle loadpath?</span>
+    <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">mod</span>.<span class="ruby-identifier">__path__</span>, <span class="ruby-string">'lib'</span>, <span class="ruby-identifier">fname</span>)
+    <span class="ruby-comment">## TODO: Support other extensions, like .rbx and .so?</span>
+    <span class="ruby-identifier">file</span> = <span class="ruby-identifier">file</span> <span class="ruby-operator">+</span> <span class="ruby-string">'.rb'</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">file</span>[<span class="ruby-value">-3</span>,<span class="ruby-value">3</span>] <span class="ruby-operator">==</span> <span class="ruby-string">'.rb'</span>
+    <span class="ruby-comment">## raise load error if file does not exist</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">LoadError</span>, <span class="ruby-node">&quot;no such file to load -- #{file}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">file</span>)
+    <span class="ruby-comment">## evaluate script in the context of module</span>
+    <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">module_eval</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">file</span>), <span class="ruby-identifier">file</span>, <span class="ruby-value">0</span>)
+  <span class="ruby-keyword">else</span> <span class="ruby-comment">## if no Bezel module is returned</span>
+    <span class="ruby-comment">## fallback to regular require</span>
+    <span class="ruby-identifier">require</span>(<span class="ruby-identifier">fname</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="lib-method" class="method-detail ">
+        <a name="method-c-lib"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">lib</span><span
+            class="method-args">(name, version=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Load library into a module namespace.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="lib-source">
+<pre>
+<span class="ruby-comment"># File lib/bezel.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lib</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">path</span> = <span class="ruby-identifier">find</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span>)
+  <span class="ruby-comment">## load error if no gem found</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">LoadError</span>, <span class="ruby-node">&quot;#{name}-#{version} not found&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">path</span>
+  <span class="ruby-comment">## location of bezel file</span>
+  <span class="ruby-identifier">main</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>, <span class="ruby-string">'lib'</span>, <span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">'.bezel'</span>)  <span class="ruby-comment">#TODO:LOADPATH</span>
+  <span class="ruby-comment">## check cache</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">TABLE</span>[<span class="ruby-identifier">main</span>] <span class="ruby-keyword">if</span> <span class="ruby-constant">TABLE</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">main</span>)
+  <span class="ruby-comment">## load error if no bezel file</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">LoadError</span>, <span class="ruby-node">&quot;#{name}-#{version} has no bezel!&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">main</span>)
+  <span class="ruby-comment">## read in bezel file</span>
+  <span class="ruby-identifier">script</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">main</span>)
+  <span class="ruby-comment"># create new Bezel module for file</span>
+  <span class="ruby-identifier">mod</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span>, <span class="ruby-identifier">path</span>)
+  <span class="ruby-comment">## put module on STACK</span>
+  <span class="ruby-constant">STACK</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">mod</span>
+  <span class="ruby-comment">## evaluate script in the context of module</span>
+  <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">module_eval</span>(<span class="ruby-identifier">script</span>, <span class="ruby-identifier">main</span>, <span class="ruby-value">0</span>)  <span class="ruby-comment"># r =</span>
+  <span class="ruby-comment">## pop module off STACK</span>
+  <span class="ruby-constant">STACK</span>.<span class="ruby-identifier">pop</span>
+  <span class="ruby-comment">## add module to cache, and return module</span>
+  <span class="ruby-constant">TABLE</span>[<span class="ruby-identifier">main</span>] = <span class="ruby-identifier">mod</span>
+  <span class="ruby-comment"># if Module === r ? r : mod</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="new-method" class="method-detail ">
+        <a name="method-c-new"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">new</span><span
+            class="method-args">(name, version, path)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Construct new <a href="Bezel.html">Bezel</a> module.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="new-source">
+<pre>
+<span class="ruby-comment"># File lib/bezel.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">version</span>, <span class="ruby-identifier">path</span>)
+  <span class="ruby-ivar">@__name__</span>    = <span class="ruby-identifier">name</span>
+  <span class="ruby-ivar">@__version__</span> = <span class="ruby-identifier">version</span>
+  <span class="ruby-ivar">@__path__</span>    = <span class="ruby-identifier">path</span>
+  <span class="ruby-keyword">super</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="roll_find-method" class="method-detail ">
+        <a name="method-c-roll_find"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">roll_find</span><span
+            class="method-args">(name,version=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>TODO: Add Roll finder.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="roll_find-source">
+<pre>
+<span class="ruby-comment"># File lib/bezel.rb, line 150</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">roll_find</span>(<span class="ruby-identifier">name</span>,<span class="ruby-identifier">version</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="__name__-method" class="method-detail ">
+        <a name="method-i-__name__"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">__name__</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Name of library.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="__name__-source">
+<pre>
+<span class="ruby-comment"># File lib/bezel.rb, line 163</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">__name__</span>
+  <span class="ruby-ivar">@__name__</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="__path__-method" class="method-detail ">
+        <a name="method-i-__path__"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">__path__</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Path to library.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="__path__-source">
+<pre>
+<span class="ruby-comment"># File lib/bezel.rb, line 173</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">__path__</span>
+  <span class="ruby-ivar">@__path__</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="__version__-method" class="method-detail ">
+        <a name="method-i-__version__"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">__version__</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Version of library.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="__version__-source">
+<pre>
+<span class="ruby-comment"># File lib/bezel.rb, line 168</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">__version__</span>
+  <span class="ruby-ivar">@__version__</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</main>
+</body>
+</html>
+

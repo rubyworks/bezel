@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<HTML>
+<HEAD>
+  <TITLE>Bezel</TITLE>
+
+  <LINK rel="icon" type="image/jpg" href="assets/images/icon.jpg"/>
+
+  <LINK type="text/css" rel="stylesheet" href="assets/styles/reset.css" />
+  <LINK type="text/css" rel="stylesheet" href="assets/styles/layout.css" />
+  <LINK type="text/css" rel="stylesheet" href="assets/styles/color.css" />
+
+  <SCRIPT language="javascript" type="text/javascript" src="assets/scripts/jquery.js"></SCRIPT>
+  <SCRIPT language="javascript" type="text/javascript" src="assets/scripts/highlight.js"></SCRIPT>
+
+  <SCRIPT type="text/javascript">
+    $(document).ready(function() {
+      $('#readme').load('readme.html');
+
+      $('pre').wrapInner('<code></code>');
+      hljs.tabReplace = '    ';
+      hljs.initHighlightingOnLoad('ruby');
+
+      $('#next_dude').click(function(){
+        // Show the next div when we click the link
+        if ($('.dude:visible').hasClass('last')) {
+           $('.dude:first').show('slow');
+        } else {
+           $('.dude:visible').next().show('slow');
+        }
+        // Hide the current div when we click the link
+        $('.dude:visible').hide();
+      });
+    });
+  </SCRIPT>
+
+  <LINK type="text/css" rel="stylesheet" href="assets/styles/highlight.css" />
+
+  <style>
+    #rubyworks{ position: fixed; bottom: 10px; right: 13px; padding: 0; opacity: 0.2; }
+  </style>
+</HEAD>
+
+<BODY>
+
+<div id="header">
+  <div class="title">
+    <table style="width: 100%;">
+    <tr><td>
+      <h1>Bezel</h1></div>
+    </td>
+    <td style="text-align: right;">
+      <h2>Real Versioning<sup>&trade;</sup></h2>
+    </td></tr>
+    </table>
+  </div>
+</div>
+
+<div id="main" style="clear: both;">
+
+  <div id="nav">
+    <a href="docs/qed">qed</a> &nbsp;&nbsp;
+    <a href="http://github.com/rubyworks/bezel/wiki">wiki</a> &nbsp;&nbsp;
+    <a href="docs/api">api</a> &nbsp;&nbsp;
+    <a href="http://rubygems.org/gems/bezel">gem</a> &nbsp;&nbsp;
+    <a href="http://github.com/rubyworks/bezel">git</a>
+
+    <div style="float: right;">
+      <a href="#" onclick="$('#readme').toggle();">readme</a> &nbsp;&nbsp;
+    </div>
+  </div>
+
+  <div id="description">
+    Bezel overcomes the limitations of using different versions of the same
+    library in the same Ruby process.
+  </div>
+
+  <div id="readme" style="display: none;">
+    <div class="section" id="section_description"><h2>DESCRIPTION</h2>
+    <p>The idea of Bezel is to overcome the limitations of using different
+    versions of the same package in the same Ruby process.</p>
+    </div>
+
+    <div class="section" id="section_usage"><h2>USAGE</h2>
+    <p>It works like this. Let's say I wrote a library called TomsLib. Now I
+    want to use TomsLib in my new fancy app, FancyApp. In my FancyApp
+    namespace I have to create a reference to TomsLib.</p>
+
+    <pre><code> module FancyApp
+       TomsLib = lib('tomslib', '1.5')
+       ...
+    </code></pre>
+
+    <p>Now I have access to TomsLib, but it is localized to my application.
+    If Jane comes along and wants to use a different version of TomsLib
+    but also utilizes my FancyApp, she could do so:</p>
+
+    <pre><code> module JanesProgram
+       TomsLib  = lib('tomslib', '1.0')
+       FancyApp = lib('fancyapp')  # use newest available
+       ...
+    </code></pre>
+
+    <p>How does this work? When you call lib(), Bezel looks for the package
+    in the current Gem paths (and in the future, Roll ledger) then it
+    reads the primary package file (eg. tomslib.rb) from the package and
+    evals it into an anonymous module.</p>
+
+    <p>This has a some important effects on how you write your Ruby programs:</p>
+
+    <ol>
+    <li><p>Any reference to core/standard libraries must be referenced via '::'
+    prefix (eg. ::Enumerable).</p></li>
+    <li><p>Core extensions are not version isolated. So avoid them when
+    possible, or depend on highly stable standardized bases such as
+    Ruby Facets and ActiveSupport.</p></li>
+    <li><p>Since Bezel is a completely different alternative to Ruby's normal
+    load system, your program will require Bezel be installed by your
+    users.</p></li>
+    <li><p>Within Bezel dependent libraries #import must be used instead
+    of #require or #load in order to keep the code within the current module.</p></li>
+    </ol>
+
+    <p>Despite the minor limitations and necessary practices required for its
+    use, Bezel is highly advantageous to the developers and end-users alike
+    in that it puts an end to the dreaded Dependency Hell.</p>
+    </div>
+
+    <div class="section" id="section_copyright"><h2>COPYRIGHT</h2>
+    <p>Copyright (c) 2009 Thomas Sawyer</p>
+    <p>Bezel is distributed under the terms of the Ruby License.</p>
+    </div>
+  </div>
+
+  <div id="siderap">
+    <div class="dude first">
+    <a href="http://www.house-mixes.com/profile/DjBeZeL/play/dj-bezel-set/">
+      <img src="assets/images/logo.jpg" title="Logo" alt="Logo" align="left" height="230px" />
+    </a>
+    <div class="quote">
+      <p>I like Bezel, cuz...</p>
+      <p>Bezel is Cool,
+      Bezel is Hip,
+      Bezel is Pimp!</p><br/>
+      &dash; DJ Bezel
+    </div>
+    </div>
+
+    <div class="dude" style="display: none;">
+    <a href="http://www.ugly.co.uk/silly/gallery.htm">
+      <img src="assets/images/tuff_guy.jpg" title="Real Tuff Guy" alt="Real Tuff Guy" align="left" height="230px" />
+    </a>
+    <div class="quote">
+      <p>No unwanted behavior gets through!</p><br/>
+      &dash; Tough Guy<i>!</i>
+    </div>
+    </div>
+
+    <!-- mary gilbreth -->
+    <div class="dude last" style="display: none;">
+    <a href="http://xaxor.com/drawings/24711-Harper%E2%80%99s-Bazaar-Singapore-March-2011--Zhang-Xu-Chao-by-Simon-Upton.html">
+      <img src="assets/images/maria_chao.jpg" title="Maria Chao" alt="Maria Chao" align="left" height="230px" />
+    </a>
+    <div class="quote">
+      <p>It allows me to have my way.</p>
+      <p>I like my way.</p><br/>
+      &dash; Maria Chao
+    </div>
+    </div>
+
+    <br/>
+
+    <div style="float: right;">
+      <button id="next_dude" onclick="">next >></a>
+    </div>
+  </div>
+
+  <div id="final_word">
+     <img src="assets/images/uml.png" /><br/>
+     Where the UML Cats Drink!
+  </div>
+
+  <div id="footer">
+    <div class="advert">
+      <script type="text/javascript"><!--
+      google_ad_client = "ca-pub-1126154564663472";
+      /* RUBYWORKS 09-10-02 728x90 */
+      google_ad_slot = "0788888658";
+      google_ad_width = 728;
+      google_ad_height = 90;
+      //-->
+      </script>
+      <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
+    </div>
+
+    <div class="copyright">
+
+      Copyright &copy; 2010 Thomas Sawyer &middot;
+      tweet: "I'm loosing my mind. But it's kind of funny! =)"
+    </div>
+  </div>
+
+</div>
+
+<br/>
+
+<div style="position: absolute; top: 0; right: 0;">
+  <a href="http://github.com/rubyworks/bezel"><img src="assets/images/fork-me.png"/></a>
+</div>
+
+<div id="rubyworks">
+  <a href="http://rubyworks.github.com">
+    <img src="http://rubyworks.github.com/assets/images/seal.png" height="175px" />
+  </a>
+</div>
+
+</BODY>
+</HTML>
+
+<!-- WebMe Copyright (c) 2009 Thomas Sawyer -->
+
+
+
