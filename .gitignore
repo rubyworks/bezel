@@ -1,7 +1,5 @@
-.cache
-doc/rdoc
-doc/ri
-doc/qedoc
+site/docs
 log
 pkg
 work/sandbox
+site/readme.html
