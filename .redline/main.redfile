@@ -36,21 +36,27 @@ syntax:
 #  live     : false   
 #  active   : false
 
-rdoc:
-  service  : RDoc
-  template : redfish
-  include  : [ lib, README, LICENSE ]
-  exclude  : [ Syckfile ]
-  main     : ~
-  extra    : ~
-  active   : true
-
 ri:
   service: RI
   include: ~
   exclude: ~
   output : ri
   active : false
+
+rdoc:
+  service  : RDoc
+  format   : redfish
+  include  : [ lib, README.rdoc, LICENSE.txt ]
+  exclude  : [ Version ]
+  main     : ~
+  extra    : ~
+  output   : site/docs/api
+  active   : true
+
+qedoc:
+  service  : custom
+  document : |
+    system "qedoc -t Bezel -o site/docs/qed qed/"
 
 dnote:
   service  : DNote
@@ -68,11 +74,11 @@ stats:
   output   : ~
   active   : true
 
-vclog:
-  service  : VClog
-  format   : html   # xml, txt
-  layout   : rel    # gnu
-  typed    : false
-  output   : ~
-  active   : false
+#vclog:
+#  service  : VClog
+#  format   : html   # xml, txt
+#  layout   : rel    # gnu
+#  typed    : false
+#  output   : ~
+#  active   : false
 
