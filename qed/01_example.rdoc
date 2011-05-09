@@ -42,5 +42,10 @@ And that it also imports a method called #extra from a seperate file.
 
   Example2::TryMe.extra.assert == "Something extra from version 1.1!"
 
+Just to be sure, let try v1.0 again.
+
+  Example1::TryMe.report.assert == "You are using version 1.0!"
+  Example1::TryMe.extra.assert == "Something extra from version 1.0!"
+
 That's all folks!
 
