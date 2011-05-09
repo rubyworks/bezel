@@ -114,9 +114,9 @@ class Bezel < Module
 
   # Construct new Bezel module.
   def initialize(name, version, path)
-    @__name__ = name
-    @__vers__ = version
-    @__path__ = path
+    @__name__    = name
+    @__version__ = version
+    @__path__    = path
     super()
   end
 
@@ -126,8 +126,8 @@ class Bezel < Module
   end
 
   # Version of library.
-  def __vers__
-    @__vers__
+  def __version__
+    @__version__
   end
 
   # Path to library.
