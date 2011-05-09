@@ -17,13 +17,9 @@ gemcutter:
   service: GemCutter
   active: true
 
-box:
-  service: Box
+gem:
+  service: Gem
   active : true
-  types  : [gem, gz]
-  include: [bin, demo, lib, meta, plug, test, "[A-Z]*"]
-  exclude: [Syckfile]
-  master : false
 
 syntax:
   service  : Syntax
@@ -53,7 +49,8 @@ ri:
   service: RI
   include: ~
   exclude: ~
-  active : true
+  output : ri
+  active : false
 
 dnote:
   service  : DNote
