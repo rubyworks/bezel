@@ -49,9 +49,9 @@ ri:
 
 rdoc:
   service  : RDoc
-  format   : redfish
-  include  : [ lib, README.rdoc, LICENSE.txt ]
-  exclude  : [ Version ]
+  format   : newfish
+  include  : [lib, README.md, LICENSE.txt]
+  exclude  : [Version]
   main     : ~
   extra    : ~
   output   : site/docs/api
