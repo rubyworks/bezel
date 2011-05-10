@@ -38,7 +38,7 @@ body { background: url(../images/ring_side.jpg) top 0px no-repeat #311; }
  pre { font-family: monospace; }
   td { text-align: left; }
    p { text-align: justify; font-size: 100%; font-weight: bold; line-height: 170%; }
-  li { font-size: 80%; font-weight: bold; line-height: 160%; }
+  li { font-size: 90%; font-weight: bold; line-height: 130%; }
    a { text-decoration: none; }
    a:hover { text-decoration: underline; }
 
@@ -83,15 +83,16 @@ body { color: #FFFFFF;  }
 #description { color: #888; background: transparent; }
 
 /* readme */
-#readme { margin: 0; padding: 20px; }
-#readme { font-family: sans-serif; font-weight: bold; line-height: 160%; }
+#readme { background: #ccc; color: #444; margin: 0; padding: 20px; }
+#readme { font-family: sans-serif; font-weight: normal; line-height: 160%; }
 #readme a { color: #057D14; }
 #readme a:hover { }
 #readme p { }
-#readme h2 { border-color: #85FD93; color: #057D14; }
+#readme h1 { color: #333; }
+#readme h2 { border-color: #85FD93; color: #333; font-size: 1.4em; }
 #readme h3 { border-color: #85FD93; }
-
-#readme { background: #ccc; }
+#readme li { padding: 0px 20px; margin: 10px; }
+#readme li p { padding: 0px; margin: 0px; }
 
 /* siderap */
 #siderap { border: 0px solid #cc0000; height: 230px; margin: 0; padding: 20px; }
