@@ -60,10 +60,10 @@ to the developers and end-users alike in that it puts an end to the dreaded
 
 ### How to Bezel a Project
 
-To allow your project to work with Bezel create a `lib/{project.name}.bezel`
+To allow your project to work with Bezel create a `lib/{project.name}.rbz`
 file in your project. The file should contain import statments and any other
-code to get your API to best interface via it's bezel. Here is an example
-of ANSI's bezel file.
+code to get your API to "bezel", so to speak. Here is an example of ANSI's
+bezel file.
 
     module ANSI; end
 
@@ -79,8 +79,9 @@ of ANSI's bezel file.
     import 'ansi/terminal'
 
 
-## COPYRIGHT
+## LICENSE
 
 Copyright (c) 2009 Thomas Sawyer
 
-Bezel is distributed under the terms of the Ruby License.
+Bezel is distributed under the same terms as Ruby 1.9+, namely the 
+BSD 2-clause license.

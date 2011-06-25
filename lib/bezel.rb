@@ -20,15 +20,15 @@
 #     FancyApp = lib('fancyapp')  # use newest available
 #     ...
 #
-# How does this work? When you call lib(), Bezel looks for
-# the package in the current gem paths (and, in the future, Roll ledger)
-# then it reads the primary package file (eg. tomslib.rb) fro the package
+# How does this work? When you call lib(), Bezel looks for the
+# package in the current gem paths (and, in the future, Roll ledger)
+# then it reads the bezel file (e.g. lib/tomslib.rbz) from the package
 # and evals it into an anonymous module.
 #
 # This has a some important effects on how you write your Ruby programs:
 #
 # 1. Any reference to core/standard libraries must be referenced via
-#    :: prefix (eg. ::Enumerable).
+#    toplevel `::` prefix (eg. ::Enumerable).
 #
 # 2. Core extensions are not version controlled. So avoid them when
 #    possible, or depend on highly stable standardized bases such as
@@ -39,7 +39,7 @@
 #    users. 
 #
 # Despite these necessary practices for its use, Bezel is highly advantageous
-# to the developers and end-users alike in that it puts an end to the dreaded
+# to developers and end-users alike in that it puts an end to the dreaded
 # Dependency Hell.
 #
 # TODO: Consider how best to support alternate loadpaths beyond 'lib/'.
@@ -58,8 +58,8 @@ class Bezel < Module
     path = find(name, version)
     ## load error if no gem found
     raise LoadError, "#{name}-#{version} not found" unless path
-    ## location of bezel file
-    main = File.join(path, 'lib', name + '.bezel')  #TODO:LOADPATH
+    ## location of bezel file (*.rbz).
+    main = File.join(path, 'lib', name + '.rbz')  #TODO: LOADPATH
     ## check cache
     return TABLE[main] if TABLE.key?(main)
     ## load error if no bezel file
