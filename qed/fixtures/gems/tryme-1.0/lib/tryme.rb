@@ -6,6 +6,6 @@ def self.report
   "You are using version #{VERSION}!"
 end
 
-import("tryme/extra")
+require "tryme/extra"
 
 

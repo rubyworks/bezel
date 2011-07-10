@@ -49,6 +49,9 @@ class Bezel < Module
   # up if two libraries load the same third library.
   TABLE = Hash.new #{|h,k|h[k]={}}
 
+  # Script cache.
+  SCRIPT = {}
+
   # Load stack keeps track of what modules are in the process
   # of being loaded.
   STACK = []
@@ -59,19 +62,20 @@ class Bezel < Module
     ## load error if no gem found
     raise LoadError, "#{name}-#{version} not found" unless path
     ## location of bezel file (*.rbz).
-    main = File.join(path, 'lib', name + '.rbz')  #TODO: LOADPATH
+    main = File.join(path, 'lib', name + '.rb')  #.rbz #TODO: LOADPATH
     ## check cache
     return TABLE[main] if TABLE.key?(main)
     ## load error if no bezel file
     raise LoadError, "#{name}-#{version} has no bezel!" unless File.exist?(main)
     ## read in bezel file
-    script = File.read(main)
+    #script = File.read(main)
     # create new Bezel module for file
     mod = new(name, version, path)
     ## put module on STACK
     STACK.push mod
     ## evaluate script in the context of module
-    mod.module_eval(script, main, 0)  # r =
+    #mod.module_eval(script, main, 0)  # r =
+    mod.__load_feature__(main)
     ## pop module off STACK
     STACK.pop
     ## add module to cache, and return module
@@ -79,39 +83,33 @@ class Bezel < Module
     # if Module === r ? r : mod
   end
 
+=begin
   #
   def self.import(fname)
     ## lookup most recent Bezel module
-    mod = STACK.last
+    current = STACK.last
     ## if Bezel module is returned
-    if mod
-      ## TODO: Hadle loadpath?
-      file = File.join(mod.__path__, 'lib', fname)
-      ## TODO: Support other extensions, like .rbx and .so?
-      file = file + '.rb' unless file[-3,3] == '.rb'
-      ## raise load error if file does not exist
-      raise LoadError, "no such file to load -- #{file}" unless File.exist?(file)
-      ## evaluate script in the context of module
-      mod.module_eval(File.read(file), file, 0)
+    if current
+      current.__load_feature__(fname)
     else ## if no Bezel module is returned
       ## fallback to regular require
-      require(fname)
+      require_without_bezel(fname)
     end
   end
+=end
 
   #
-  #def self.require(fname)
-  #  if mod = STACK.last
-  #    glob = File.join(mod.__path__, 'lib', fname + "{.rb,.so,}")  # TODO: All possible extensions
-  #    if file = Dir[glob].first
-  #      return TABLE[file] if TABLE.key?(file)
-  #      TABLE[file] = mod
-  #      mod.module_eval(File.read(file), file, 0)
-  #      mod
-  #    end
-  #  end
-  #  Kernel.require(fname)
-  #end
+  def self.require(path)
+    if current = STACK.last
+      begin
+        current.__load_feature__(path) ? true : false
+      rescue LoadError
+        require_without_bezel(path)
+      end
+    else
+      require_without_bezel(path)
+    end
+  end
 
   #
   #def self.main(name, version=nil)
@@ -153,9 +151,10 @@ class Bezel < Module
 
   # Construct new Bezel module.
   def initialize(name, version, path)
-    @__name__    = name
-    @__version__ = version
-    @__path__    = path
+    @__name__     = name
+    @__version__  = version
+    @__path__     = path
+    @__features__ = []
     super()
   end
 
@@ -174,6 +173,33 @@ class Bezel < Module
     @__path__
   end
 
+  #
+  def __features__
+    @__features__
+  end
+
+  #
+  def __load_feature__(path)
+    if path =~ /^[\.\/]/  # if absolute path
+      file = File.expand_path(path)
+    else
+      glob = File.join(__path__, 'lib', path + "{.rb,}")  # TODO: All possible extensions
+      file = Dir[glob].first
+    end
+
+    raise LoadError, "no such file to load -- #{file}" unless file
+
+    if __features__.include?(file)
+      return false
+    else
+      __features__ << file
+      script = File.read(file) #(SCRIPT[file] ||= File.read(file))
+      module_eval(script, file, 0)
+    end
+
+    return file
+  end
+
 end
 
 # Retuns a new Bezel Module.
@@ -181,12 +207,19 @@ def lib(name, version=nil)
   Bezel.lib(name, version)
 end
 
-# When using Bezel, rather than use #require or #load, you use #import.
-def import(fname)
-  Bezel.import(fname)
+#
+alias require_without_bezel require
+
+# Override require to try bezel first.
+def require(fname)
+  Bezel.require(fname)
 end
 
-#def require(fname)
-#  Bezel.require(fname)
+# TODO require_relative
+#
+
+## When using Bezel, rather than use #require or #load, you use #import.
+#def import(fname)
+#  Bezel.import(fname)
 #end
 
