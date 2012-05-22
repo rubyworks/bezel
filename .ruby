@@ -1,36 +1,64 @@
---- 
-spec_version: 1.0.0
-replaces: []
-
-loadpath: 
-- lib
-name: bezel
-repositories: {}
-
+---
+source:
+- meta
+authors:
+- name: trans
+  email: transfire@gmail.com
+copyrights:
+- holder: Rubyworks
+  year: '2010'
+  license: BSD-2-Clause
+requirements:
+- name: detroit
+  groups:
+  - build
+  development: true
+- name: qed
+  groups:
+  - test
+  development: true
+- name: ae
+  groups:
+  - test
+  development: true
+- name: ansi
+  version: 1.4.2
+  groups:
+  - test
+  development: true
+dependencies: []
+alternatives: []
 conflicts: []
-
-engine_check: 
-- ruby 1.8.7 (2010-08-16 patchlevel 302) [x86_64-linux]
+repositories:
+- uri: git://github.com/proutils/bezel.git
+  scm: git
+  name: upstream
+resources:
+- uri: http://rubyworks.github.com/bezel
+  label: Website
+  type: home
+- uri: http://github.com/rubyworks/bezel
+  label: Source Code
+  type: code
+- uri: http://github.com/rubyworks/bezel/issues
+  label: Issue Tracker
+  type: bugs
+- uri: http://groups.google.com/groups/rubyworks-mailinglist
+  label: Mailing List
+  type: mail
+- uri: irc://us.chat.freenode.net/rubyworks
+  label: IRC Channel
+  type: chat
+categories: []
+extra: {}
+load_path:
+- lib
+revision: 0
+name: bezel
 title: Bezel
-contact: trans <transfire@gmail.com>
-resources: 
-  mail: http://googlegroups.com/group/rubyworks-mailinglist
-  home: http://proutils.github.com/bezel
-  work: http://github.com/proutils/bezel
-maintainers: []
-
-requires: []
-
-manifest: MANIFEST
-version: 0.2.0
-licenses: []
-
-copyright: Copyright (c) 2009 Thomas Sawyer
-authors: 
-- Thomas Sawyer
 organization: Rubyworks
-description: |-
-  The idea of Bezel is to overcome the limitations of using different
-  versions of the same package in the same Ruby process.
+created: '2010-02-19'
 summary: Alternate loading system for Ruby allowing version multiplicity.
-created: "2010-02-19"
+version: 0.2.0
+description: Alternate loading system for Ruby allowing version multiplicity.
+date: '2012-05-22'
