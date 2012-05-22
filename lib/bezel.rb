@@ -45,6 +45,8 @@
 # TODO: Consider how best to support alternate loadpaths beyond 'lib/'.
 
 class Bezel < Module
+  require 'finder'
+
   # Cache of loaded modules. This speeds things
   # up if two libraries load the same third library.
   TABLE = Hash.new #{|h,k|h[k]={}}
@@ -56,30 +58,56 @@ class Bezel < Module
   # of being loaded.
   STACK = []
 
+  # When in development mode, Bezel uses the latest and greatest
+  # available version regardless of version settings.
+  def self.development=(boolean)
+    @development = !!boolean
+  end
+
+  #
+  def self.development?
+    @development
+  end
+
   # Load library into a module namespace.
   def self.lib(name, version=nil)
-    path = find(name, version)
+    version = nil if development?
+
+    ##path = find(name, version)
+
     ## load error if no gem found
-    raise LoadError, "#{name}-#{version} not found" unless path
-    ## location of bezel file (*.rbz).
-    main = File.join(path, 'lib', name + '.rb')  #.rbz #TODO: LOADPATH
+    ##raise LoadError, "#{name}-#{version} not found" unless path
+
+    ## location of main requirement file
+    ## TODO: should we require a dedicated bezel file instead? e.g. `*.rbz`.
+    #main = File.join(path, 'lib', name + '.rb')  #.rbz #TODO: LOADPATH
+    main = Find.load_path(name + '.rb', :from=>name, :version=>version, :absolute=>true).first
+
     ## check cache
     return TABLE[main] if TABLE.key?(main)
+
     ## load error if no bezel file
-    raise LoadError, "#{name}-#{version} has no bezel!" unless File.exist?(main)
+    raise LoadError, "#{name}-#{version} has no bezel!" unless main && File.exist?(main)
+
     ## read in bezel file
     #script = File.read(main)
-    # create new Bezel module for file
-    mod = new(name, version, path)
+
+    ## create new Bezel module for file
+    mod = new(name, version, main) #path)
+
     ## put module on STACK
     STACK.push mod
+
     ## evaluate script in the context of module
     #mod.module_eval(script, main, 0)  # r =
     mod.__load_feature__(main)
+
     ## pop module off STACK
     STACK.pop
+
     ## add module to cache, and return module
     TABLE[main] = mod
+
     # if Module === r ? r : mod
   end
 
@@ -117,6 +145,7 @@ class Bezel < Module
   #  File.join(path, 'lib', name + '.rb')
   #end
 
+=begin
   #
   def self.find(name, version=nil)
     path = nil
@@ -148,6 +177,7 @@ class Bezel < Module
   def self.roll_find(name,version=nil)
     return nil
   end
+=end
 
   # Construct new Bezel module.
   def initialize(name, version, path)
@@ -183,8 +213,9 @@ class Bezel < Module
     if path =~ /^[\.\/]/  # if absolute path
       file = File.expand_path(path)
     else
-      glob = File.join(__path__, 'lib', path + "{.rb,}")  # TODO: All possible extensions
-      file = Dir[glob].first
+      #glob = File.join(__path__, 'lib', path + "{.rb,}")  # TODO: All possible extensions
+      #file = Dir[glob].first
+      file = Find.feature(path, :from=>__name__, :version=>__version__, :absolute=>true).first
     end
 
     raise LoadError, "no such file to load -- #{file}" unless file
