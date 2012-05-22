@@ -2,7 +2,7 @@
 
   require 'bezel'
 
-  ANSI_VERSION = '1.2.5'
+  ANSI_VERSION = '1.4.2'
 
   class ColorfulString
     X = lib('ansi', ANSI_VERSION)
