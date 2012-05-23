@@ -238,7 +238,7 @@ def lib(name, version=nil)
   Bezel.lib(name, version)
 end
 
-#
+# Alias original require.
 alias require_without_bezel require
 
 # Override require to try bezel first.
@@ -246,8 +246,7 @@ def require(fname)
   Bezel.require(fname)
 end
 
-# TODO require_relative
-#
+# TODO require_relative and Kernel.require
 
 ## When using Bezel, rather than use #require or #load, you use #import.
 #def import(fname)
