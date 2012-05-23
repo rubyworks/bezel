@@ -8,7 +8,7 @@ email:
   #parts: [readme]
 
 gem:
-  gemspec: pkg/*.gemspec
+  gemspec: pkg/bezel.gemspec
   active: true
 
 github:
@@ -25,12 +25,12 @@ yard:
   priority: 2
 
 qed:
-  files: spec
+  files: demo
 
 qedoc:
-  title: Bezel Demonstations
-  files: spec
-  output: SPEC.md
+  title:  Bezel Demonstrations
+  files:  demo
+  output: DEMO.md
 
 vclog:
   active: false
