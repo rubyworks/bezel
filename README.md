@@ -1,5 +1,6 @@
 # Bezel
 
+
 ## DESCRIPTION
 
 The idea of Bezel is to overcome the limitations of using different
@@ -11,6 +12,7 @@ versions of the same package in the same Ruby process.
 * home: http://proutils.github.com/bezel
 * work: http://github.com/proutils/bezel
 * mail: http://googlegroups.com/group/rubyworks-mailinglist
+* chat: irc://chat.us.freenode.net/rubyworks
 
 
 ## USAGE
@@ -50,33 +52,20 @@ and ActiveSupport.
 load system, your program will require Bezel be installed by your
 users. No big deal. In other words, list it into your projects dependencies.
 
-4. Within Bezel dependent libraries #import must be used to load internal
-library scripts instead of #require or #load, in order to keep the code
-within the annonymous module.
+4. A project's main require file must be the same as the library's name.
 
 Despite these necessary practices for its use, Bezel is highly advantageous
-to the developers and end-users alike in that it puts an end to the dreaded
-<i>Dependency Hell</i>.
+to the developers and end-users alike in that it puts an *absolute* end to
+the dreaded *Dependency Hell*.
 
-### How to Bezel a Project
 
-To allow your project to work with Bezel create a `lib/{project.name}.rbz`
-file in your project. The file should contain import statments and any other
-code to get your API to "bezel", so to speak. Here is an example of ANSI's
-bezel file.
+## STATUS
 
-    module ANSI; end
-
-    import 'ansi/code'
-    import 'ansi/bbcode'
-    import 'ansi/columns'
-    import 'ansi/diff'
-    import 'ansi/logger'
-    import 'ansi/mixin'
-    import 'ansi/progressbar'
-    import 'ansi/string'
-    import 'ansi/table'
-    import 'ansi/terminal'
+It may not be possible to test Bezel via Travis CI because of the way the tests
+change the GEM_HOME. Currently they fail because of this, even though they pass
+on local development machine. We'll leave this for now in hopes we will get it
+working at some point: 
+[![Build Status](https://secure.travis-ci.org/rubyworks/bezel.png)](http://travis-ci.org/rubyworks/bezel)
 
 
 ## LICENSE
