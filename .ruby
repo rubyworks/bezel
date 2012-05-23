@@ -9,6 +9,8 @@ copyrights:
   year: '2010'
   license: BSD-2-Clause
 requirements:
+- name: finder
+  version: 0.3~
 - name: detroit
   groups:
   - build
@@ -61,4 +63,4 @@ created: '2010-02-19'
 summary: Alternate loading system for Ruby allowing version multiplicity.
 version: 0.2.0
 description: Alternate loading system for Ruby allowing version multiplicity.
-date: '2012-05-22'
+date: '2012-05-23'
