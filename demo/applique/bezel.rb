@@ -1,13 +1,14 @@
-# require bezel
+# Use a dummy Gem location for this example.
+dummy_gem_home = File.expand_path('../fixtures', File.dirname(__FILE__))
 
-require 'bezel'
+ENV['GEM_HOME'] = dummy_gem_home
+Gem.path.unshift(dummy_gem_home)
 
-# use a dummy Gem location for this example
-
-ENV['GEM_HOME'] = File.expand_path('../fixtures', File.dirname(__FILE__))
+Gem::Specification.reset
 
 #p Gem::Specification.all_names
+#puts "Gem path added: #{dummy_gem_home}"
 
-#Gem.path.unshift(File.expand_path('../fixtures', File.dirname(__FILE__)))
-#puts "Gem path added: " + File.expand_path('fixtures', File.dirname(__FILE__))
+# Require Bezel
+require 'bezel'
 
