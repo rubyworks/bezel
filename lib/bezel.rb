@@ -233,17 +233,30 @@ class Bezel < Module
 
 end
 
-# Retuns a new Bezel Module.
-def lib(name, version=nil)
-  Bezel.lib(name, version)
-end
 
-# Alias original require.
-alias require_without_bezel require
+module Kernel
+  class << self
+    # Alias original require.
+    alias require_without_bezel require
 
-# Override require to try bezel first.
-def require(fname)
-  Bezel.require(fname)
+    # Override require to try bezel first.
+    def require(fname)
+      Bezel.require(fname)
+    end
+  end
+
+  # Alias original require.
+  alias require_without_bezel require
+
+  # Override require to try bezel first.
+  def require(fname)
+    Bezel.require(fname)
+  end
+
+  # Retuns a new Bezel Module.
+  def lib(name, version=nil)
+    Bezel.lib(name, version)
+  end
 end
 
 # TODO require_relative and Kernel.require
