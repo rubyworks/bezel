@@ -1,4 +1,4 @@
-#!mast .ruby .yardopts bin demo lib test [A-Z][A-Z]*
+#!mast .ruby .yardopts bin demo lib test [A-Z]*.*
 .ruby
 demo/01_example.rdoc
 demo/02_example.rdoc
