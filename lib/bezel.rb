@@ -74,14 +74,12 @@ class Bezel < Module
     version = nil if development?
 
     ##path = find(name, version)
-
-    ## load error if no gem found
     ##raise LoadError, "#{name}-#{version} not found" unless path
-
     ## location of main requirement file
     ## TODO: should we require a dedicated bezel file instead? e.g. `*.rbz`.
     #main = File.join(path, 'lib', name + '.rb')  #.rbz #TODO: LOADPATH
-    main = Find.load_path(name + '.rb', :from=>name, :version=>version, :absolute=>true).first
+
+    main = Find.feature(name, :from=>name, :version=>version, :absolute=>true).first
 
     ## check cache
     return TABLE[main] if TABLE.key?(main)
@@ -93,7 +91,7 @@ class Bezel < Module
     #script = File.read(main)
 
     ## create new Bezel module for file
-    mod = new(name, version, main) #path)
+    mod = new(name, version) #, main)
 
     ## put module on STACK
     STACK.push mod
@@ -107,24 +105,7 @@ class Bezel < Module
 
     ## add module to cache, and return module
     TABLE[main] = mod
-
-    # if Module === r ? r : mod
   end
-
-=begin
-  #
-  def self.import(fname)
-    ## lookup most recent Bezel module
-    current = STACK.last
-    ## if Bezel module is returned
-    if current
-      current.__load_feature__(fname)
-    else ## if no Bezel module is returned
-      ## fallback to regular require
-      require_without_bezel(fname)
-    end
-  end
-=end
 
   #
   def self.require(path)
@@ -145,45 +126,11 @@ class Bezel < Module
   #  File.join(path, 'lib', name + '.rb')
   #end
 
-=begin
-  #
-  def self.find(name, version=nil)
-    path = nil
-    path ||= gem_find(name, version)  if defined?(::Gem)
-    path ||= roll_find(name, version) if defined?(::Roll)
-    path
-  end
-
-  #
-  def self.gem_find(name, version)
-    raise ArgumentError, "version must be explicit" unless version
-
-    basename = "#{name}-#{version}"
-    gem_paths.find do |path|
-      File.basename(path) == basename
-    end
-  end
-
-  #
-  def self.gem_paths
-    @gem_paths ||= (
-      Gem.path.map do |dir|
-        Dir[File.join(dir, 'gems', '*')]
-      end.flatten
-    )
-  end
-
-  # TODO: Add Roll finder.
-  def self.roll_find(name,version=nil)
-    return nil
-  end
-=end
-
   # Construct new Bezel module.
-  def initialize(name, version, path)
+  def initialize(name, version) #, path)
     @__name__     = name
     @__version__  = version
-    @__path__     = path
+    #@__path__     = path
     @__features__ = []
     super()
   end
@@ -199,9 +146,9 @@ class Bezel < Module
   end
 
   # Path to library.
-  def __path__
-    @__path__
-  end
+  #def __path__
+  #  @__path__
+  #end
 
   #
   def __features__
@@ -213,8 +160,6 @@ class Bezel < Module
     if path =~ /^[\.\/]/  # if absolute path
       file = File.expand_path(path)
     else
-      #glob = File.join(__path__, 'lib', path + "{.rb,}")  # TODO: All possible extensions
-      #file = Dir[glob].first
       file = Find.feature(path, :from=>__name__, :version=>__version__, :absolute=>true).first
     end
 
@@ -233,8 +178,9 @@ class Bezel < Module
 
 end
 
-
 module Kernel
+  # TODO require_relative
+
   class << self
     # Alias original require.
     alias require_without_bezel require
@@ -258,11 +204,4 @@ module Kernel
     Bezel.lib(name, version)
   end
 end
-
-# TODO require_relative and Kernel.require
-
-## When using Bezel, rather than use #require or #load, you use #import.
-#def import(fname)
-#  Bezel.import(fname)
-#end
 
