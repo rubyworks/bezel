@@ -1,6 +1,6 @@
-= RELEASE HISTORY
+# RELEASE HISTORY
 
-== 0.2.0 / 2012-05-23
+## 0.2.0 / 2012-05-23
 
 New release finally address a number of important issues.
 You can think of this release as a "beta" release, in that
@@ -14,7 +14,7 @@ Changes:
 * No longer need to use #import for internal #require.
 
 
-== 0.1.0 / 2010-02-19
+## 0.1.0 / 2010-02-19
 
 This is an alpha release of Bezel, an alternate load
 system for Ruby, just to put it out there and get
